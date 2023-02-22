@@ -1,5 +1,4 @@
-N, E, D =range,len,True
-import numpy as A
+N, E, D =range,len,True; import numpy as A
 def F(x):return 0.5*x*(1+A.tanh(A.sqrt(2/A.pi)*(x+0.044715*x**3)))
 def G(x):B=A.exp(x-A.max(x,axis=-1,keepdims=D));return B/A.sum(B,axis=-1,keepdims=D)
 def C(x,g,b,eps=1e-5):return g*(x-A.mean(x,axis=-1,keepdims=D))/A.sqrt(A.var(x,axis=-1,keepdims=D)+eps)+b
@@ -15,5 +14,5 @@ def L(i,p,n,t):
 	from tqdm import tqdm
 	for _ in tqdm(N(t),''):i.append(int(A.argmax(K(i,**p,n_head=n)[-1])))
 	return i[E(i)-t:]
-def M(prompt,t=40,ms='124M',md=''):from u import l as D;A,B,F=D(ms,md);C=A.encode(prompt);assert E(C)+t<B['n_ctx'];G=L(C,F,B['n_head'],t);H=A.decode(G);return H
+def M(prompt,t=40,ms='124M',md='models'):from utils import load_encoder_hparams_and_params as D;A,B,F=D(ms,md);C=A.encode(prompt);assert E(C)+t<B['n_ctx'];G=L(C,F,B['n_head'],t);H=A.decode(G);return H
 import fire;fire.Fire(M)
