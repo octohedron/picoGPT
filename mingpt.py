@@ -7,7 +7,7 @@ def G(x):B=A.exp(x-A.max(x,axis=-1,keepdims=D));return B/A.sum(B,axis=-1,keepdim
 def C(x,g,b,eps=1e-5):return g*(x-A.mean(x,axis=-1,keepdims=D))/A.sqrt(A.var(x,axis=-1,keepdims=D)+eps)+b
 def B(x,w,b):return x@w+b
 def H(x,c,p):return B(F(B(x,**c)),**p)
-def I(x,c,p,n_head):x=B(x,**c);return B(A.hstack([G(B@C.T/A.sqrt(B.shape[-1])+(1-A.tri(x.shape[0],dtype=x.dtype))*-1e10)@D for(B,C,D)in zip(*list(map(lambda x:A.split(x,n_head,axis=-1),A.split(x,3,axis=-1))))]),**p)
+def I(x,c_attn,c_proj,n_head):x=B(x,**c_attn);return B(A.hstack([G(B@C.T/A.sqrt(B.shape[-1])+(1-A.tri(x.shape[0],dtype=x.dtype))*-1e10)@D for(B,C,D)in zip(*list(map(lambda x:A.split(x,n_head,axis=-1),A.split(x,3,axis=-1))))]),**c_proj)
 def J(x,mlp,attn,ln_1,ln_2,n_head):x=x+I(C(x,**ln_1),**attn,n_head=n_head);x=x+H(C(x,**ln_2),**mlp);return x
 def K(i,wte,wpe,blocks,ln_f,n_head):
 	A=wte[i]+wpe[range(len(i))]
