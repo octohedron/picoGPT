@@ -17,5 +17,5 @@ def L(i,p,n,t):
 	from tqdm import tqdm
 	for _ in tqdm(N(t),''):i.append(int(A.argmax(K(i,**p,n_head=n)[-1])))
 	return i[E(i)-t:]
-def M(prompt,t=40,ms='124M',md='m'):from u import l as D;A,B,F=D(ms,md);C=A.encode(prompt);assert E(C)+t<B['n_ctx'];G=L(C,F,B['n_head'],t);H=A.decode(G);return H
+def M(prompt,t=40,ms='124M',md='m'):from utils import load_encoder_hparams_and_params as D;A,B,F=D(ms,md);C=A.encode(prompt);assert E(C)+t<B['n_ctx'];G=L(C,F,B['n_head'],t);H=A.decode(G);return H
 import fire;fire.Fire(M)
