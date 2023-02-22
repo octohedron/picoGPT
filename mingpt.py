@@ -1,11 +1,4 @@
-
-
-
-
-
-N=range
-E=len
-D=True
+N, E, D =range,len,True
 import numpy as A
 def F(x):return 0.5*x*(1+A.tanh(A.sqrt(2/A.pi)*(x+0.044715*x**3)))
 def G(x):B=A.exp(x-A.max(x,axis=-1,keepdims=D));return B/A.sum(B,axis=-1,keepdims=D)
